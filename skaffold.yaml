@@ -3,7 +3,13 @@ kind: Config
 deploy:
   kubectl:
     manifests:
-      - ./infra/k8s/*
+      - ./infra/k8s/auth-depl*
+      - ./infra/k8s/orders-depl*
+      - ./infra/k8s/payments-depl*
+      - ./infra/k8s/tickets-depl*
+      - ./infra/k8s/ingress*
+      - ./infra/k8s/nats*
+      - ./infra/k8s/shared-mongo*
 build:
   googleCloudBuild:
     projectId: ticketing-dev-427705
@@ -16,14 +22,14 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: us.gcr.io/ticketing-dev-427705/client
-      context: client
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: '**/*.js'
-            dest: .
+    # - image: us.gcr.io/ticketing-dev-427705/client
+    #   context: client
+    #   docker:
+    #     dockerfile: Dockerfile
+    #   sync:
+    #     manual:
+    #       - src: '**/*.js'
+    #         dest: .
     - image: us.gcr.io/ticketing-dev-427705/tickets
       context: tickets
       docker:
@@ -40,14 +46,14 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: us.gcr.io/ticketing-dev-427705/expiration
-      context: expiration
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: 'src/**/*.ts'
-            dest: .
+    # - image: us.gcr.io/ticketing-dev-427705/expiration
+    #   context: expiration
+    #   docker:
+    #     dockerfile: Dockerfile
+    #   sync:
+    #     manual:
+    #       - src: 'src/**/*.ts'
+    #         dest: .
     - image: us.gcr.io/ticketing-dev-427705/payments
       context: payments
       docker:
