@@ -10,6 +10,7 @@ deploy:
       - ./infra/k8s/ingress*
       - ./infra/k8s/nats*
       - ./infra/k8s/shared-mongo*
+      - ./infra/k8s-dev/*
 build:
   googleCloudBuild:
     projectId: ticketing-dev-427705
